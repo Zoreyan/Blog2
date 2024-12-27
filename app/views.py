@@ -109,7 +109,3 @@ def post_delete(request, pk):
         return redirect('index')
 
     return render(request, 'app/post_delete.html')
-
-
-"Hello world"
-"Cold weather"
