@@ -112,3 +112,4 @@ def post_delete(request, pk):
 
 
 "Hello world"
+"Cold weather"
