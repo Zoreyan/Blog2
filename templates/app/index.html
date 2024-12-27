@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <h1>Главная страница</h1>
+            {% if search_q %}
+              <h5>Результаты по запросу: {{ search_q }}</h5>
+            {% endif %}
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for i in posts %}
+            <div class="col">
+              <div class="card shadow-sm">
+
+                {% if i.image %}
+                  <img src="{{ i.image.url }}" alt="{{ i.title }}"
+                  class="img-fluid" width="100%" height="225">
+                {% else %}
+                  <img src="https://arsenal-museum.art/wp-content/uploads/2024/01/snimok-ekrana-1336.png" alt=""
+                  class="img-fluid" width="100%" height="225">
+                {% endif %}
+                <div class="card-body">
+                  <h3 class="card-title">{{ i.title }}</h3>
+                  <p class="card-text">{{ i.description }}.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{% url 'post-detail' i.id %}" class="btn btn-sm btn-outline-secondary">Открыть</a>
+                      <a href="{% url 'update-post' i.id %}" class="btn btn-sm btn-outline-secondary">Изменить</a>
+                    </div>
+                    <small class="text-muted">{{ i.date }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+    </div>
+{% endblock %}
